@@ -33,27 +33,28 @@
 %--------------------------------------------------------------------------------------
 \begin{frame}{Группа объектов управления}
 \begin{itemize}
-\item Группа из $q$ взаимосвязанных линейных нестационарных объектов управления
+\item Группа из $q$ взаимосвязанных линейных нестационарных объектов
 \item \structure{Математическая модель $i$-го объекта}, $i \in I = \{1,\ 2,\ ...,\ q\}$
 $$
 \dot x_i = A_i(t) x_i + \sum_{j \in I_i} A_{ij}(t)x_j + B_i(t) u_i +
 \sum_{j \in I_i} B_{ij}(t) u_j,\quad x_i(t_0) = x_{i,0}
 $$
 	\begin{itemize}
-	\item$T = [t_0,\ t_f]$
-	\item$x_i = x_i(t) \in \R^{n_i}, \ t \in T$
-	\item$u_i = u_i(t) \in U_i = \{u \in \R^{r_i} : u_{i*} \leq u \leq u_i^* \}, \ t \in T$
-	\item$A_i(t), t \in T$, $B_i(t), t \in T,$ --динамика и входное устройство $i$-й модели
+	\item$t \in T = [t_0,\ t_f]$
+	\item$x_i = x_i(t) \in \R^{n_i}, \ t \in T$ -- состояние $i$-й математической модели
+	\item$u_i = u_i(t) \in U_i = \{u \in \R^{r_i} : u_{i*} \leq u \leq u_i^* \}, \ t \in T$ -- управляющее воздействие $i$-й математической модели
+	%\item$A_i(t), t \in T$, $B_i(t), t \in T,$ --динамика и входное устройство $i$-й модели
 	\end{itemize}
-\item $T_h = \{t_0,~ t_0 - h, \dots ,~ t_f - h\},\ h = \dfrac{t_f - t_0}{N},\ N \in \mathbb{N}$
+%\item $T_h = \{t_0,~ t_0 - h, \dots ,~ t_f - h\},\ h = \dfrac{t_f - t_0}{N},\ N \in \mathbb{N}$
 
 \item \structure{Дискретное управляющее воздействие} 
-$$u(t) \equiv u(\tau), ~~~t \in [\tau, ~\tau + h[,~~~ \tau \in T_h$$
+$$u(t) \equiv u(\tau), ~~~t \in [\tau, ~\tau + h[,~~~ \tau \in T_h,$$
+{\small $$T_h = \{t_0,~ t_0 - h, \dots ,~ t_f - h\},\ h = \dfrac{t_f - t_0}{N},\ N \in \mathbb{N}$$}
 
 \end{itemize}
 \end{frame}
 %--------------------------------------------------------------------------------------
-\begin{frame}{Статические взаимосвязи}
+\begin{frame}{Статические взаимосвязи. \\ Цели управления}
 \begin{itemize}
 	\item \structure {Терминальное множество $S$ } (общее для всех объектов)
 	$$x(t_f) \in S = \left\lbrace
@@ -66,56 +67,23 @@ $$u(t) \equiv u(\tau), ~~~t \in [\tau, ~\tau + h[,~~~ \tau \in T_h$$
 	\item $n = \sum_{i \in I_i} n_i$ \bigskip
 	\item $H_i \in \R^{m \times n_i}$ \bigskip
 	\item rank$(H_i) = m \le n_i, i \in I$ \bigskip
-	\item $g \in \R^m$
+	\item $g \in \R^m$\bigskip
+	\item Минимизация \structure {линейного терминального} критерия качества
+ $$\sum_{i \in I} c_i' x_i(t_f) \to \min_{u}$$
 	\end{itemize}
 	
 \end{itemize}
 \end{frame}
-%--------------------------------------------------------------------------------------
-\begin{frame}{Статические взаимосвязи}
-$$x(t_f) \in S = \left\lbrace
-\begin{pmatrix}
-	x_1\\
-	\vdots\\
-	x_q\\
-\end{pmatrix} \in \R^n : \sum_{i \in I} H_i x_i =g\right\rbrace$$
-\begin{itemize}
-	\item Упрощенная запись
-	$$ x(t_f) \in S = \left\lbrace x: H x = g\right\rbrace $$
-	\begin{itemize}	
-	\item $\ x = \begin{pmatrix}x_1\\ \vdots \\ x_q\\
-\end{pmatrix}$ \bigskip
-	\item $H = (H_1, ..., H_q)$
-	\end{itemize}
-\end{itemize}
-\end{frame}
-%--------------------------------------------------------------------------------------
-\begin{frame}{Цель управления}
-\begin{itemize}
-	\item Минимизация \structure {линейного терминального} критерия качества
- $$\sum_{i \in I} c_i' x_i(t_f) \to \min_{u}$$
 
-	\item Упрощенная запись
-	$$c' x \to \min_{u}, \ c = \begin{pmatrix}
-	c_1\\
-	\vdots\\
-	c_q\\
-\end{pmatrix}$$
-
-
-\end{itemize}
-\end{frame}
 %--------------------------------------------------------------------------------------
-\begin{frame}{Задача оптимального управления \\ для группы}
+\begin{frame}{Задача оптимального управления \\ группой}
 \begin{block}{}
 $$\sum_{i \in I} c_i' x_i(t_f) \to \min_{u}$$
 $$\dot x_i = A_i(t) x_i + \sum_{j \in I_i} A_{ij}(t)x_j + B_i(t) u_i +
 \sum_{j \in I_i} B_{ij}(t) u_j,\quad x_i(t_0) = x_{i,0}, \ i\in I$$
 $$\sum_{i \in I} H_i x_i(t_f) = g$$
+$$u_i(t) \in U_i, \quad t\in T, \quad i \in I$$
 \end{block}
-\begin{itemize}	
-\item $u_i(t) \in U_i, \quad t\in T, \quad i \in I$
-\end{itemize}
 \end{frame}
 %--------------------------------------------------------------------------------------
 \begin{frame}{Централизованное и  \\ децентрализованное управление}
@@ -143,7 +111,7 @@ $$\sum_{i \in I} H_i x_i(t_f) = g$$
 \end{frame}%--------------------------------------------------------------------------------------
 \begin{frame}{Построение централизованной обратной \\ связи в реальном времени}
 \begin{itemize}
-\item Упрощенный вид решаемой задачи
+\item Большая динамическая система для централизованной задачи
 $$\dot x = A(t) x + B(t) u, \quad x(t_0) = x_0$$
 
 	\begin{itemize}
@@ -169,7 +137,7 @@ x_0 =
 	\end{itemize}
 
 
-\item Построение реализации обратной связи
+\item Построение реализации обратной связи в реальном времени
 $$
     x^*(\tau) =
 \begin{pmatrix}
@@ -183,15 +151,15 @@ $$
 	\vdots\\
 	u_q^*(t)\\
 \end{pmatrix}, \ \
-t \in [\tau, \tau + h[,
+t \in [\tau, \tau + h[
 $$
 
 \end{itemize}
 \end{frame}
 %--------------------------------------------------------------------------------------
 \begin{frame}{Задача $P(\tau)$}
-
-Для построения реализации обратной связи оптимальный регулятор решает задачу $P(\tau)$:
+\begin{itemize}
+\item Для построения реализации оптимальной обратной связи оптимальный регулятор решает задачу $P(\tau)$:
 \begin{columns}
 \begin{column}{8cm}
 \begin{block}{}
@@ -201,12 +169,10 @@ $$
 \end{block}
 \end{column}
 \end{columns}
-
-\begin{itemize}
-	\item $U = U_1 \times U_2 \times ... \times U_q$
-	\item Оптимальную программу задачи $P(\tau)$ будем обозначать $u^0(t|\tau,x^*(\tau)), t \in [\tau, t_f]$
+\item $U = U_1 \times U_2 \times ... \times U_q$
+\item Оптимальная программа задачи $P(\tau)$ 
+$$u^0(t|\tau,x^*(\tau)), t \in [\tau, t_f]$$
 \end{itemize}
-
 \end{frame}
 %--------------------------------------------------------------------------------------
 \begin{frame}{Алгоритм построения реализации \\ 
@@ -231,12 +197,12 @@ u^0(\tau, x^*(\tau)) = u^0(\tau|\tau,x^*(\tau)),
 \end{enumerate}
 \end{frame}
 %--------------------------------------------------------------------------------------
-\begin{frame}{Последовательный подход}
+\begin{frame}{Решение задачи $P(\tau)$}
 
 \begin{itemize}
 \item Формула Коши
 $$x(t) = F(t,t_0)x_0 + \int\limits_{t_0}^t F(t,\theta)B(\theta)u(\theta)\,d\theta$$
-\item Подставим в формулу Коши $t = t_f$, а получившуюся величину $x(t_f)$ подставим в исходную задачу
+\item При $t = t_f$ получим $x(t_f)$ и подставим в задачу $P(t_0)$:
 
 \begin{columns}
 	\begin{column}{0.5cm} \end{column}
@@ -261,6 +227,8 @@ $$u_* \le u(s) \le u^*,  \ s \in T_h $$
 \end{frame}
 %--------------------------------------------------------------------------------------
 \begin{frame}{Функциональная форма $P(\tau)$}
+\begin{itemize}
+\item Аналогично для $P(\tau)$
 
 \begin{columns}
 \begin{column}{8cm}
@@ -272,13 +240,13 @@ $$u_* \le u(s) \le u^*,  \ s \in T_h(\tau)$$
 \end{column}
 \end{columns}\bigskip
 
-\begin{itemize}
+
 \item $T_h(\tau) = [\tau, t_f] \cap T_h$\bigskip
-\item $\tilde g = g - H F(t_f, \tau) x^*(\tau)$\bigskip
+\item $\tilde g(\tau) = g - H F(t_f, \tau) x^*(\tau)$\bigskip
 \end{itemize}
 
 \end{frame}%--------------------------------------------------------------------------------------
-\begin{frame}{Рассматриваемый пример}
+\begin{frame}{Пример}
 \begin{itemize}
 
 \item Три взаимосвязанных системы
@@ -315,6 +283,7 @@ $$u_* \le u(s) \le u^*,  \ s \in T_h(\tau)$$
 	d_i = 0.1,\ \dot{z_i}(0) = 1,\ z_i(0) = 1,\ i \in I
 \]
 $$N = 100 => h = \dfrac{1}{N} = \dfrac{1}{100}$$ 
+\item Возмущения в конкретном процессе
 \[
 w(t) = 
 \begin{pmatrix}
@@ -324,7 +293,7 @@ w(t) =
 \end{pmatrix}
 \]
 
-\item Замена
+\item Замена переменных
 \begin{align}
 x_1 &= z_1, \qquad x_3 = z_2, \qquad x_5 = z_3, \notag \\
 x_2 &= \dot{z_1}, \qquad x_4 = \dot{z_2}, \qquad x_6 = \dot{z_3}.\notag
@@ -332,23 +301,14 @@ x_2 &= \dot{z_1}, \qquad x_4 = \dot{z_2}, \qquad x_6 = \dot{z_3}.\notag
 \end{itemize}
 \end{frame}%--------------------------------------------------------------------------------------
 \begin{frame}{Вид задачи после замены}
-%\begin{itemize}
-%\item Доплнительные переменные
-%	\begin{itemize}
-%	\item $n = 6$ -- число равенств замены
-%	\item $q = 3$ -- число взаимосвязанных систем
-%	\item $r = q$ -- число управлений
-%	\item $m = 2n$ -- число ограничений на $x_i, \ i = 1...n$
-%	\end{itemize} 
-%\end{itemize} 
  
- \begin{columns}
+\begin{columns}
 \begin{column}{6cm}
 \begin{block}{}
 $$\int\limits_{t_0}^{t_f} \sum_{i \in I} |u_i(t)|\,dt \to \min,$$
 
 \[
-	\dot{x}(t) = Ax(t) + Bu(t) + Mw(t),
+	\dot{x}(t) = Ax(t) + Bu(t),
 \]
 \[
 	x(0) = x_0, \ t \in [t_0, t_f], \ Hx(t_f) \le g
@@ -377,7 +337,7 @@ H = \begin{pmatrix}
 	0 & 0 & 0 & 0 & 0 & 1 \\
 	0 & 0 & k & 0 & -2k & 0 \\
 	\end{pmatrix}, \ 	
-	B = M = \begin{pmatrix}
+	B = \begin{pmatrix}
 	0 & 0 & 0 \\
 	1 & 0 & 0 \\
 	0 & 0 & 0 \\
@@ -391,11 +351,11 @@ H = \begin{pmatrix}
 \]
 
 \end{frame}%--------------------------------------------------------------------------------------
-\begin{frame}{Функциональная форма данного\\ примера}
+\begin{frame}{Функциональная форма в примере}
 \begin{itemize}
 \item Замена
 $$u(s) = z(s) - v(s), s \in T_h$$
-\item После применения последовательного подхода получим
+\item Задача линейного программирования
 \begin{columns}
 \begin{column}{6cm}
 \begin{block}{}
@@ -405,16 +365,16 @@ $$\sum_{s \in T_h}
 $$\sum_{s \in T_h} 
 	(D_h(s), -D_h(s))
 	\begin{pmatrix} z(s) \\ v(s) \\ \end{pmatrix}  \le \tilde g$$
+	\[
+    -L \cdot \mathbbm{1}_{r} \le u(t) \le L \cdot \mathbbm{1}_{r},\  t\in [t_0,t_f]
+    \]
 \end{block}
 \end{column}
 \end{columns}
-
-\item $D_h(s)$ и $\tilde g$ задаются аналогично тому, как задавались при сведении задачи к задаче ЛП
-
 \end{itemize}
 \end{frame}
 %--------------------------------------------------------------------------------------
-\begin{frame}{Функциональная форма данного\\ примера}
+\begin{frame}{Функциональная форма в примере}
 \begin{columns}
 \begin{column}{6cm}
 \begin{block}{}
@@ -425,11 +385,14 @@ $$\sum_{s \in T_h}
 	(D_h(s), -D_h(s))
 	\begin{pmatrix} z(s) \\ v(s) \\ \end{pmatrix}  \le \tilde g,$$
 $$c = \mathbbm{1}_{2r}$$
+\[
+    -L \cdot \mathbbm{1}_{r} \le u(t) \le L \cdot \mathbbm{1}_{r},\  t\in [t_0,t_f]
+    \]
 \end{block}
 \end{column}
 \begin{column}{6cm}
 
-	$\quad$Доплнительные переменные
+	$\quad$Дополнительные переменные
 	\begin{itemize}
 	\item $n = 6$ -- число равенств замены
 	\item $q = 3$ -- число систем
@@ -456,31 +419,43 @@ $$
     %\caption{Фазовые графики}
 \end{figure}
 
-$$ X_1 = \begin{pmatrix} -0.0155\\ 0.0978\\ -0.1000\\ 0.0990\\-0.0038\\ 0.0238 \\ \end{pmatrix}, \quad X_2 = \begin{pmatrix} 0.1238\\-0.1174\\ 0.0748\\ -0.0818\\0.1240\\
+$$ x^*(t_f) = \begin{pmatrix} -0.0155\\ 0.0978\\ -0.1000\\ 0.0990\\-0.0038\\ 0.0238 \\ \end{pmatrix}, \quad x^0(t_f) = \begin{pmatrix} 0.1238\\-0.1174\\ 0.0748\\ -0.0818\\0.1240\\
 -0.0233\\  \end{pmatrix}$$
 \end{frame}%--------------------------------------------------------------------------------------
 \begin{frame}{Сопутствующие результаты}
 \begin{itemize}
 
-\item Значение критерия качества для программного решения: $285.0503$.
-
-\item Значение критерия качества для оптимальной обратной связи: $217.5017$
-
-\item Среднее время выполнения функции $P(\tau)$ : $0.029$ секунды
-
-\item Соответствующие фазовым графикам управления
+\item Оптимальные управления
 \begin{figure}[h!]
     \centering
     \scalebox{.5}{\includegraphics{u}}
 \end{figure}
 
+\item Значение критерия качества для программного решения: $285.0503$
+
+\item Значение критерия качества для оптимальной обратной связи: $217.5017$
+
+\item Среднее время выполнения функции $P(\tau)$ : $0.029$ секунды
+
 \end{itemize} 
+\end{frame}
+%--------------------------------------------------------------------------------------
+\begin{frame}{Заключение}
+\begin{itemize}
+\item Исследована задача централизованного управления группой взаимосвязанных систем в реальном времени\bigskip
+
+\item Предложен алгоритм работы централизованного оптимального регулятора\bigskip
+
+\item Построена функциональная форма задачи $P(\tau)$\bigskip
+
+\item Реализован алгоритм работы оптимального регулятора\bigskip
+
+\item Проведен анализ программного решения и реализации обратной связи\bigskip
+\end{itemize}
 \end{frame}
 %--------------------------------------------------------------------------------------
 \begin{frame}
 	\centering \Huge\emph{Спасибо за внимание!}
 \end{frame}
-
-
 %--------------------------------------------------------------------------------------
 \end{document} 
